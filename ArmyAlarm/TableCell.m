@@ -14,10 +14,11 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        description = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+        description = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, 30, 30)];
         [description setFont:[UIFont fontWithName:@"Army" size:12]];
-        [description setNumberOfLines:2];
+        [description setNumberOfLines:1];
         [description setTextAlignment:NSTextAlignmentLeft];
+        [description setBackgroundColor:[UIColor clearColor]];
         [self addSubview:description];
     }
     return self;
@@ -31,16 +32,16 @@
 - (void) layoutSubviews {
     [super layoutSubviews];
      
-    [[self textLabel] setFont:[UIFont fontWithName:@"Army" size:34]];
+    [[self textLabel] setFont:[UIFont fontWithName:@"Army" size:18]];
     [[self detailTextLabel] setFont:[UIFont fontWithName:@"Army" size:13]];
     [[self detailTextLabel] setTextColor:[UIColor greenColor]];
     [[self textLabel] setShadowColor:[UIColor whiteColor]];
     [[self textLabel] setShadowOffset:CGSizeMake(1, 0)];
-  //  [description setFrame:CGRectMake(self.textLabel.frame.size.width+self.textLabel.frame.origin.x+34, 0, 110, 32)];
+   // [description setFrame:CGRectMake(100, 4, 110, 32)];
 }
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated{
     [super setEditing:editing animated:animated];
-    int x = 90;
+    int x = 100;
     if (editing) {
         x+=34;
     }
@@ -50,7 +51,7 @@
     [UIView beginAnimations:@"MoveAndStrech" context:nil];
     [UIView setAnimationDuration:.3];
     [UIView setAnimationBeginsFromCurrentState:YES];
-    [description setFrame:CGRectMake(x, 0, 110, 30)];
+    [description setFrame:CGRectMake(x, 6, 110, 30)];
     [UIView commitAnimations];
 
     

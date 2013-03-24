@@ -39,15 +39,24 @@
         [self.view addSubview:table];
         
         
+        snooze = [[UISwitch alloc] init];
+        censor = [[UISwitch alloc] init];
+        alarmLabel = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 168, 16)];
         
-        UIPickerView* picker = [[UIPickerView alloc] initWithFrame:CGRectMake(34, 216, 252, self.view.frame.size.height-256-32)];
-        [picker setDelegate:self];
-        [picker setDataSource:self];
-        
-        picker.layer.borderWidth = 2.0f;
+        picker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 200, 252, self.view.frame.size.height-256)];
+        [picker setDatePickerMode:UIDatePickerModeTime];
+         
         [self.view addSubview:picker];
         
-                
+        
+        UIImageView* overlay = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"overlay.png"]];
+        
+        overlay.frame = CGRectMake(-1, 199, 322, picker.frame.size.height+3);
+        
+        
+        [self.view addSubview:overlay];
+        
+ 
         UIButton* cancel = [[UIButton alloc] initWithFrame:CGRectMake(34, self.view.frame.size.height-32, 80, 32)];
         [cancel.titleLabel setFont:[UIFont fontWithName:@"Army" size:22]];
         [cancel setTitle:@"Cancel" forState:UIControlStateNormal];
@@ -66,14 +75,33 @@
     return self;
 }
 
+- (void)loadValues:(NSDictionary*)alarmValues{
+    if (alarmValues==nil) {
+        [snooze setOn:YES];
+        [alarmLabel setText:@"Alarm"];
+        [censor setOn:NO];
+        [picker setDate:[NSDate date]];
+    }
+    else{
+        [alarmValues objectForKey:@"snooze"];
+        [alarmValues objectForKey:@"title"];
+        [alarmValues objectForKey:@"date"];
+        [alarmValues objectForKey:@"censored"];
+    }
+}
+
 - (void)cancel{
     [self dismissViewControllerAnimated:NO completion:nil];
 }
 - (void)save {
+    NSMutableDictionary* saveDic = [[NSMutableDictionary alloc] init];
+    [saveDic setObject:alarmLabel.text forKey:@"title"];
+    [saveDic setObject:[picker date] forKey:@"date"];
+    [[DataController sharedInstance] createAlarm:saveDic];
     
+    [self dismissViewControllerAnimated:NO completion:nil];
 }
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
@@ -124,20 +152,20 @@ NSLog(@"Selected Color: Index of selected color: %i", row);
     case 0:
         [[cell textLabel] setText:@"censored"];
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-   //     censor = [[UISwitch alloc] init];
-     //   [cell setAccessoryView:censor];
         break;
     case 1:
         [[cell textLabel] setText:@"Snooze"];
-        snooze = [[UISwitch alloc] init];
         [cell setAccessoryView:snooze];
         break;
     case 2:
         [[cell textLabel] setText:@"label"];
-        alarmLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 140, 60)];
+        
+        
+
         [alarmLabel setFont:[UIFont fontWithName:@"Army" size:14]];
-        [alarmLabel setTextAlignment:NSTextAlignmentCenter];
-        [alarmLabel setText:@"Alarm"];
+        [alarmLabel setTextAlignment:NSTextAlignmentRight];
+        [alarmLabel setDelegate:self];
+        [alarmLabel setReturnKeyType:UIReturnKeyDone];
         [cell setAccessoryView:alarmLabel];
         break;
 
@@ -162,6 +190,10 @@ NSLog(@"Selected Color: Index of selected color: %i", row);
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+-(BOOL) textFieldShouldReturn:(UITextField*) textField {
+    [textField resignFirstResponder]; 
+    return YES;
 }
 
 @end

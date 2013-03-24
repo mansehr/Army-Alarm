@@ -8,11 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
-@interface EditViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UIPickerViewDataSource, UIPickerViewDelegate>{
+@interface EditViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>{
     UITableView* table;
     UILabel* repeatLabel;
     UISwitch* censor;
     UISwitch* snooze;
-    UILabel* alarmLabel;
+    UITextField* alarmLabel;
+    UIDatePicker* picker;
+    
+ //   BOOL censored;
+   // BOOL sooz;
+    //NSString* title;
+    //NSDate* date;
 }
+- (void)loadValues:(NSDictionary*)alarmValues;
 @end

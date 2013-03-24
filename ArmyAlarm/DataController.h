@@ -9,8 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @interface DataController : NSObject{
-    NSMutableDictionary* alarms;
+    NSMutableDictionary* data;
 }
 +(DataController*)sharedInstance;
--(NSMutableDictionary*)getAlarms;
+-(NSMutableArray*)getAlarms;
+-(void)deleteAlarmAtIndex:(int)index;
+-(void)setAlarms:(NSMutableArray*)alarms;
+-(void)createAlarm:(NSDictionary*)newAlarm;
 @end

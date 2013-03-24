@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Alarms</key>
+	<array>
+		<dict>
+			<key>title</key>
+			<string>test alarm 1</string>
+			<key>censored</key>
+			<false/>
+			<key>snooze</key>
+			<true/>
+			<key>date</key>
+			<date>2013-03-10T04:00:15Z</date>
+		</dict>
+		<dict>
+			<key>title</key>
+			<string>test alarm 1</string>
+			<key>censored</key>
+			<false/>
+			<key>snooze</key>
+			<true/>
+			<key>date</key>
+			<date>2013-03-10T04:00:15Z</date>
+		</dict>
+		<dict>
+			<key>title</key>
+			<string>test alarm 1</string>
+			<key>censored</key>
+			<false/>
+			<key>snooze</key>
+			<true/>
+			<key>date</key>
+			<date>2013-03-10T04:00:15Z</date>
+		</dict>
+		<dict>
+			<key>title</key>
+			<string>test alarm 1</string>
+			<key>censored</key>
+			<false/>
+			<key>snooze</key>
+			<true/>
+			<key>date</key>
+			<date>2013-03-10T04:00:15Z</date>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -83,17 +83,19 @@
         [preview addTarget:self action:@selector(previewAlarms) forControlEvents:UIControlEventTouchUpInside];
         [preview setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [self.view addSubview:preview];
-        
-        
-        
-
     }
     return self;
+}
+-(void)viewDidAppear:(BOOL)animated{
+    [table reloadData];
+
 }
 
 -(void)addAlarm{
     EditViewController* edit = [[EditViewController alloc] init];
+
     [self presentViewController:edit animated:NO completion:nil];
+    [edit loadValues:nil];
 }
 
 -(void)editAlarm:(UIButton*)button{
@@ -108,7 +110,6 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
-    
 
 }
 
@@ -134,6 +135,9 @@
     if (cell == nil) {
         cell = [[TableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
+
+    NSMutableDictionary* details = [[[DataController sharedInstance] getAlarms] objectAtIndex:[indexPath row]];
+    
     UIButton* onOff = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 72, 64)];
     [onOff setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 5, 0)];
     [onOff setImage:[UIImage imageNamed:@"off.png"] forState:UIControlStateNormal];
@@ -141,15 +145,30 @@
     [onOff addTarget:cell action:@selector(setOnOff:) forControlEvents:UIControlEventTouchUpInside];
     [cell setAccessoryView:onOff];
     
+    NSDate* date = [details objectForKey:@"date"];
+    
+    NSDateFormatter* format = [[NSDateFormatter alloc] init];
+    [format setDateFormat:@"hh:mm a"];
+    
+    int timeInt = [[format stringFromDate:date] intValue];
     [cell setSelectionStyle:UITableViewCellEditingStyleNone];
-    [[cell textLabel] setText:@"0900"];
-    [[cell detailTextLabel] setText:@"Alarm"];
-    [[cell description] setText:@"mornine"];
+    [[cell textLabel] setText: [format stringFromDate:date]];
+    [[cell description] setText:[details objectForKey:@"title"]];
 
     [cell setEditingAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        //[tableView beginUpdates];
+        [[DataController sharedInstance] deleteAlarmAtIndex:[indexPath row]];
+       // [history removeObjectAtIndex:indexPath.row];
+       // [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationMiddle];
+       // [tableView endUpdates];
+        [tableView reloadData];
+    }    
+}
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 42;
 }
@@ -159,6 +178,5 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
 }
-
 
 @end

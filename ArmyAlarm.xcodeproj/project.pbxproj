@@ -29,6 +29,8 @@
 		98975D1416B8CA6300730CD2 /* pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 98975D1216B8CA6200730CD2 /* pause@2x.png */; };
 		98975D1516B8CA6300730CD2 /* play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 98975D1316B8CA6200730CD2 /* play@2x.png */; };
 		98975D1816B8DA2E00730CD2 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98975D1716B8DA2E00730CD2 /* StoreKit.framework */; };
+		98ADA3F916FE10AB0088C957 /* overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 98ADA3F816FE10AB0088C957 /* overlay.png */; };
+		98BBD0FC16EC36EA00CFF014 /* alarms.plist in Resources */ = {isa = PBXBuildFile; fileRef = 98BBD0FB16EC36EA00CFF014 /* alarms.plist */; };
 		98D84F7E167AB3BC00D78445 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 98D84F7D167AB3BC00D78445 /* Default-568h@2x.png */; };
 		98D84F80167AB3C400D78445 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 98D84F7F167AB3C400D78445 /* Default@2x.png */; };
 		98D84F82167AB3C900D78445 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 98D84F81167AB3C900D78445 /* Default.png */; };
@@ -88,6 +90,8 @@
 		98975D1216B8CA6200730CD2 /* pause@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pause@2x.png"; sourceTree = "<group>"; };
 		98975D1316B8CA6200730CD2 /* play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "play@2x.png"; sourceTree = "<group>"; };
 		98975D1716B8DA2E00730CD2 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		98ADA3F816FE10AB0088C957 /* overlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = overlay.png; sourceTree = "<group>"; };
+		98BBD0FB16EC36EA00CFF014 /* alarms.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = alarms.plist; sourceTree = "<group>"; };
 		98D84F7D167AB3BC00D78445 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		98D84F7F167AB3C400D78445 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		98D84F81167AB3C900D78445 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -137,9 +141,6 @@
 		98079ABF1646E54300AC7041 = {
 			isa = PBXGroup;
 			children = (
-				98975D1716B8DA2E00730CD2 /* StoreKit.framework */,
-				98975D0616B8BCD400730CD2 /* MediaPlayer.framework */,
-				98975D0416B8BCB600730CD2 /* AVFoundation.framework */,
 				98D84F83167AB5F700D78445 /* Icon@2x.png */,
 				98D84F81167AB3C900D78445 /* Default.png */,
 				98D84F7F167AB3C400D78445 /* Default@2x.png */,
@@ -164,6 +165,9 @@
 		98079ACD1646E54400AC7041 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				98975D1716B8DA2E00730CD2 /* StoreKit.framework */,
+				98975D0616B8BCD400730CD2 /* MediaPlayer.framework */,
+				98975D0416B8BCB600730CD2 /* AVFoundation.framework */,
 				98079B1016472ECF00AC7041 /* QuartzCore.framework */,
 				98079ACE1646E54400AC7041 /* UIKit.framework */,
 				98079AD01646E54400AC7041 /* Foundation.framework */,
@@ -186,6 +190,7 @@
 				98450676167ED61F006152E6 /* PreviewViewController.m */,
 				9845067A167EDE94006152E6 /* EditViewController.h */,
 				9845067B167EDE95006152E6 /* EditViewController.m */,
+				98BBD0FB16EC36EA00CFF014 /* alarms.plist */,
 				98079B0D164726F400AC7041 /* TableCell.h */,
 				98079B0E164726F400AC7041 /* TableCell.m */,
 				98079AD51646E54400AC7041 /* Supporting Files */,
@@ -207,6 +212,7 @@
 				98D84F8E167AE50A00D78445 /* Drill.jpeg */,
 				98D84F8A167AE1D800D78445 /* on@2x.png */,
 				98D84F8B167AE1D800D78445 /* off@2x.png */,
+				98ADA3F816FE10AB0088C957 /* overlay.png */,
 				98079B1216474BA300AC7041 /* Army.ttf */,
 				98079AD61646E54400AC7041 /* ArmyAlarm-Info.plist */,
 				98079AD71646E54400AC7041 /* InfoPlist.strings */,
@@ -324,6 +330,8 @@
 				98F6572016B8F765003D473A /* 4.mp3 in Resources */,
 				98F6572116B8F765003D473A /* 5.mp3 in Resources */,
 				98F6572716B90045003D473A /* Icon.png in Resources */,
+				98BBD0FC16EC36EA00CFF014 /* alarms.plist in Resources */,
+				98ADA3F916FE10AB0088C957 /* overlay.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
