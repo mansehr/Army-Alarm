@@ -143,7 +143,7 @@
                 [cell.imageView setImage:[UIImage imageNamed:@"play.png"]];
             }else{
                 [[cell textLabel] setFont:[UIFont fontWithName:@"Army" size:12]];
-                [[cell textLabel] setText:@"Purchase Uncensored sounds   $1.99"];
+                [[cell textLabel] setText:@"      Purchase Uncensored sounds"];
             }
             break;
         case 4:

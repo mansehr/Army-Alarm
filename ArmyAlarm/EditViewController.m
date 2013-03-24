@@ -163,7 +163,7 @@ NSLog(@"Selected Color: Index of selected color: %i", row);
     
     switch ([indexPath row]) {
     case 0:
-        [[cell textLabel] setText:@"censored"];
+        [[cell textLabel] setText:@"uncensored"];
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
         break;
     case 1:
