@@ -34,7 +34,7 @@
         [self.view addSubview:line];
         
         
-        UIButton* edit = [[UIButton alloc] initWithFrame:CGRectMake(34, 50, 76, 32)];
+        edit = [[UIButton alloc] initWithFrame:CGRectMake(34, 50, 76, 32)];
         [edit.titleLabel setFont:[UIFont fontWithName:@"Army" size:28]];
         [edit.titleLabel setTextAlignment:UITextAlignmentRight];
         [edit setTitle:@"edit" forState:UIControlStateNormal];
@@ -62,6 +62,7 @@
         [self.view addSubview:drill];
         
         table = [[UITableView alloc] initWithFrame:CGRectMake(34, 84, 252,168)];
+        [table setAllowsSelectionDuringEditing:YES];
         [table setDelegate:self];
         [table setDataSource:self];
         [table setBounces:false];
@@ -92,10 +93,19 @@
 }
 
 -(void)addAlarm{
-    EditViewController* edit = [[EditViewController alloc] init];
+    EditViewController* editView = [[EditViewController alloc] init];
 
-    [self presentViewController:edit animated:NO completion:nil];
-    [edit loadValues:nil];
+    [self presentViewController:editView animated:NO completion:nil];
+    [editView loadValues:nil];
+}
+
+-(void)modifyAlarm:(int)index{
+    EditViewController* editView = [[EditViewController alloc] init];
+
+    [self presentViewController:editView animated:NO completion:nil];
+    NSDictionary* dict = [[[DataController sharedInstance] getAlarms] objectAtIndex:index];
+    [editView setEditIndex:index];
+    [editView loadValues:dict];
 }
 
 -(void)editAlarm:(UIButton*)button{
@@ -150,7 +160,6 @@
     NSDateFormatter* format = [[NSDateFormatter alloc] init];
     [format setDateFormat:@"hh:mm a"];
     
-    int timeInt = [[format stringFromDate:date] intValue];
     [cell setSelectionStyle:UITableViewCellEditingStyleNone];
     [[cell textLabel] setText: [format stringFromDate:date]];
     [[cell description] setText:[details objectForKey:@"title"]];
@@ -161,11 +170,7 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        //[tableView beginUpdates];
         [[DataController sharedInstance] deleteAlarmAtIndex:[indexPath row]];
-       // [history removeObjectAtIndex:indexPath.row];
-       // [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationMiddle];
-       // [tableView endUpdates];
         [tableView reloadData];
     }    
 }
@@ -176,7 +181,10 @@
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-
+    if ([table isEditing]) {
+        [self modifyAlarm:[indexPath row]];
+        [self editAlarm:edit];
+    }
 }
 
 @end

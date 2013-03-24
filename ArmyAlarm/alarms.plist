@@ -5,6 +5,8 @@
 	<key>Alarms</key>
 	<array>
 		<dict>
+			<key>on</key>
+			<true/>
 			<key>title</key>
 			<string>test alarm 1</string>
 			<key>censored</key>

@@ -83,21 +83,34 @@
         [picker setDate:[NSDate date]];
     }
     else{
-        [alarmValues objectForKey:@"snooze"];
-        [alarmValues objectForKey:@"title"];
-        [alarmValues objectForKey:@"date"];
-        [alarmValues objectForKey:@"censored"];
+        [snooze setOn:[[alarmValues objectForKey:@"snooze"] boolValue]];
+        [alarmLabel setText:[alarmValues objectForKey:@"title"]];
+        [picker setDate:[alarmValues objectForKey:@"date"] animated:NO];
+        [censor setOn:[[alarmValues objectForKey:@"censored"] boolValue]];
     }
 }
 
 - (void)cancel{
     [self dismissViewControllerAnimated:NO completion:nil];
 }
+
+-(void)setEditIndex:(int)index{
+    editing = true;
+    editIndex = index;
+}
 - (void)save {
     NSMutableDictionary* saveDic = [[NSMutableDictionary alloc] init];
     [saveDic setObject:alarmLabel.text forKey:@"title"];
     [saveDic setObject:[picker date] forKey:@"date"];
-    [[DataController sharedInstance] createAlarm:saveDic];
+    [saveDic setObject:[NSNumber numberWithBool:[snooze isOn]] forKey:@"snooze"];
+    [saveDic setObject:[NSNumber numberWithBool:[censor isOn]] forKey:@"censored"];
+    
+    if (editing) {
+        [[DataController sharedInstance] replaceAlarm:saveDic atIndex:editIndex];
+    }
+    else{
+        [[DataController sharedInstance] createAlarm:saveDic];
+    }
     
     [self dismissViewControllerAnimated:NO completion:nil];
 }

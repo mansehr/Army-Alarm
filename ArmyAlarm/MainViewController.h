@@ -12,5 +12,6 @@
     UITableView* table;
     BOOL editing;
     UINavigationItem *item;
+    UIButton* edit;
 }
 @end

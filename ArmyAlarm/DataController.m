@@ -40,16 +40,19 @@ static DataController *sharedInstance = nil;
     NSMutableArray* alarms = [self getAlarms];
     [alarms removeObjectAtIndex:index];
     [self setAlarms:alarms];
-    
 }
 
 -(void)createAlarm:(NSDictionary*)newAlarm{
     NSMutableArray* alarms = [self getAlarms];
     [alarms addObject:newAlarm];
     [self setAlarms:alarms];
-    
 }
 
+-(void)replaceAlarm:(NSDictionary*)newAlarm atIndex:(int)index {
+    NSMutableArray* alarms = [self getAlarms];
+    [alarms replaceObjectAtIndex:index withObject:newAlarm];
+    [self setAlarms:alarms];
+}
 -(void)setAlarms:(NSMutableArray*)alarms{
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];

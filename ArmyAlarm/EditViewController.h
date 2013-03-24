@@ -15,11 +15,9 @@
     UISwitch* snooze;
     UITextField* alarmLabel;
     UIDatePicker* picker;
-    
- //   BOOL censored;
-   // BOOL sooz;
-    //NSString* title;
-    //NSDate* date;
+    BOOL editing;
+    int editIndex;
 }
 - (void)loadValues:(NSDictionary*)alarmValues;
+-(void)setEditIndex:(int)index;
 @end

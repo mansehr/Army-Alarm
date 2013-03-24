@@ -16,4 +16,5 @@
 -(void)deleteAlarmAtIndex:(int)index;
 -(void)setAlarms:(NSMutableArray*)alarms;
 -(void)createAlarm:(NSDictionary*)newAlarm;
+-(void)replaceAlarm:(NSDictionary*)newAlarm atIndex:(int)index;
 @end
